@@ -384,34 +384,23 @@ ROX/
 ├── contracts/
 │   ├── shared_types.rs           Shared type definitions (source of truth)
 │   └── mock.rs                   Mock implementations for independent dev
-├── config/
-│   └── rox.yml                   Default configuration
-├── skills/                       Agent development instructions
-└── run-agents.sh                 Multi-agent parallel development launcher
+└── config/
+    └── rox.yml                   Default configuration
 ```
 
 ---
 
 ## Contributing
 
-ROX uses a **5-agent parallel development** model. Each agent specializes in a domain:
-
-| Agent | Crates | Domain |
-|-------|--------|--------|
-| A | protocol, codec, buffer | Data formats & serialization |
-| B | core, derive | Runtime engine |
-| C | transport, log, replay | Communication & logging |
-| D | agent, guard | AI intelligence & safety |
-| E | api, cli, bridge | User interfaces & integration |
+Contributions are welcome! The codebase is organized into focused crates — pick any area that interests you.
 
 ```bash
-# Run a specific agent
-./run-agents.sh a    # Protocol specialist
-./run-agents.sh b    # Core runtime specialist
-./run-agents.sh d    # AI/Safety specialist
-```
+# Build
+cargo build --workspace
 
-See [PARALLEL_DEV_GUIDE.md](PARALLEL_DEV_GUIDE.md) for the full coordination protocol.
+# Test
+cargo test --workspace
+```
 
 ---
 
