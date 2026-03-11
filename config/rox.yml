@@ -1,0 +1,130 @@
+# Rox 기본 설정 파일
+# 핫 리로드 지원: 파일 수정 시 자동 반영 (일부 항목은 재시작 필요)
+
+transport:
+  shm:
+    enabled: false        # Phase 4에서 활성화
+    pool_size_mb: 256
+  tcp:
+    bind: "0.0.0.0:7447"
+    tls: false
+  udp:
+    bind: "0.0.0.0:7448"
+
+discovery:
+  mode: static            # Phase 1: static만. multicast는 Phase 5
+  peers:
+    - "192.168.1.101:7447"
+    - "192.168.1.102:7447"
+
+nodes:
+  - id: lidar_driver
+    type: "rox_drivers::VelodyneLidar"
+    rate_hz: 10.0
+    priority: 0
+    background: false
+    config:
+      ip: "192.168.1.201"
+      port: 2368
+
+  - id: lidar_filter
+    type: "rox_perception::VoxelFilter"
+    rate_hz: 10.0
+    priority: 1
+    background: false
+    config:
+      voxel_size: 0.1
+
+  - id: path_planner
+    type: "rox_planning::AStarPlanner"
+    rate_hz: 5.0
+    priority: 2
+    background: false
+
+  - id: motor_controller
+    type: "rox_drivers::CanMotor"
+    rate_hz: 100.0
+    priority: 0
+    background: false
+
+connections:
+  - from: "lidar_driver/scan"
+    to: "lidar_filter/input"
+    qos:
+      reliability: reliable
+      priority: 1
+
+  - from: "lidar_filter/output"
+    to: "path_planner/pointcloud"
+
+  - from: "path_planner/velocity_cmd"
+    to: "motor_controller/command"
+    qos:
+      reliability: reliable
+      deadline_us: 10000
+
+# Agent 설정
+agent:
+  enabled: true
+  start_mode:
+    type: observer
+    min_observation_hours: 24
+    min_data_points: 100000
+    min_topic_coverage: 0.8
+    max_anomaly_ratio: 0.05
+  qos_prediction:
+    enabled: true
+    level: 0              # 0=규칙, 1=자기학습, 2=사전학습
+    interval_ms: 100
+  anomaly_detection:
+    enabled: true
+    jitter_threshold_us: 500
+    packet_loss_threshold: 0.01
+  healing:
+    enabled: true
+    failover_timeout_ms: 50
+  throttling:
+    enabled: false
+
+# Guard 설정
+guard:
+  enabled: true
+  safety_level: qm
+  process_isolation: true
+  supervisor:
+    max_restart_attempts: 3
+    restart_cooldown_sec: 5
+    interim_policy: block_all_commands
+  watchdog:
+    heartbeat_interval_ms: 100
+    timeout_ms: 500
+  failsafe:
+    on_guard_failure: block_all_commands
+    on_validation_timeout: reject
+  boundaries:
+    - node: "motor_controller"
+      max_velocity: 2.0
+      max_acceleration: 5.0
+      geofence:
+        min_x: -10.0
+        max_x: 10.0
+        min_y: -10.0
+        max_y: 10.0
+  audit_log:
+    enabled: true
+    path: "./logs/audit/"
+    rotation_mb: 100
+
+# 로깅 설정
+logging:
+  level: info
+  deterministic: true
+  log_dir: "./logs/"
+  rotation_mb: 50
+
+# API 설정
+api:
+  enabled: true
+  bind: "0.0.0.0:9090"
+  cors_origins:
+    - "http://localhost:3000"

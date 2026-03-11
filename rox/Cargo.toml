@@ -1,0 +1,24 @@
+[package]
+name = "rox"
+version = "0.1.0"
+edition = "2021"
+description = "Rox — Intelligent Nerve System for Robotics (unified entry crate)"
+
+[features]
+default = []
+agent = ["dep:rox-agent"]
+guard = ["dep:rox-guard"]
+bridge-ros2 = ["dep:rox-bridge"]
+shm = ["rox-transport/shm"]
+full = ["agent", "guard", "bridge-ros2", "shm"]
+
+[dependencies]
+rox-protocol = { path = "../crates/rox-protocol" }
+rox-codec = { path = "../crates/rox-codec" }
+rox-buffer = { path = "../crates/rox-buffer" }
+rox-transport = { path = "../crates/rox-transport" }
+rox-core = { path = "../crates/rox-core" }
+rox-log = { path = "../crates/rox-log" }
+rox-agent = { path = "../crates/rox-agent", optional = true }
+rox-guard = { path = "../crates/rox-guard", optional = true }
+rox-bridge = { path = "../crates/rox-bridge", optional = true }

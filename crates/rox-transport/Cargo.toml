@@ -1,0 +1,20 @@
+[package]
+name = "rox-transport"
+version = "0.1.0"
+edition = "2021"
+description = "Multi-transport layer for Rox (SHM, TCP, UDP, Serial)"
+
+[features]
+default = []
+shm = ["dep:iceoryx2"]
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+rox-buffer = { path = "../rox-buffer" }
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+iceoryx2 = { version = "0.4", optional = true }

@@ -1,0 +1,17 @@
+[package]
+name = "rox-cli"
+version = "0.1.0"
+edition = "2021"
+description = "CLI tool for Rox (rox new / run / monitor)"
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+rox-core = { path = "../rox-core" }
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+clap = { workspace = true }
+async-trait = { workspace = true }

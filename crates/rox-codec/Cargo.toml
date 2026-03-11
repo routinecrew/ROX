@@ -1,0 +1,20 @@
+[package]
+name = "rox-codec"
+version = "0.1.0"
+edition = "2021"
+description = "Serialization/deserialization codecs for Rox"
+
+[features]
+default = []
+arrow = ["dep:arrow"]
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+bytes = { workspace = true }
+serde = { workspace = true }
+bincode = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+arrow = { version = "53", optional = true }

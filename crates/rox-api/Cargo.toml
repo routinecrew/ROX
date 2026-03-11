@@ -1,0 +1,19 @@
+[package]
+name = "rox-api"
+version = "0.1.0"
+edition = "2021"
+description = "REST/gRPC management API for Rox"
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+async-stream = "0.3"

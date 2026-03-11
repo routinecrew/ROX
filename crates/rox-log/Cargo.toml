@@ -1,0 +1,17 @@
+[package]
+name = "rox-log"
+version = "0.1.0"
+edition = "2021"
+description = "Deterministic structured logging for Rox"
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+rox-codec = { path = "../rox-codec" }
+bytes = { workspace = true }
+serde = { workspace = true }
+bincode = { workspace = true }
+memmap2 = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }

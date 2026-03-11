@@ -1,0 +1,16 @@
+[package]
+name = "rox-guard"
+version = "0.1.0"
+edition = "2021"
+description = "Safety validation layer for Rox"
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+blake3 = { workspace = true }

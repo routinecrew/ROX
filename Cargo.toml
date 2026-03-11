@@ -1,0 +1,77 @@
+[package]
+name = "rox-bin"
+version = "0.1.0"
+edition = "2021"
+description = "Intelligent Nerve System for Robotics"
+
+[[bin]]
+name = "rox"
+path = "src/main.rs"
+
+[features]
+default = []
+agent = ["rox-agent"]
+guard = ["rox-guard"]
+bridge-ros2 = ["rox-bridge"]
+full = ["agent", "guard", "bridge-ros2"]
+
+[dependencies]
+rox-core = { path = "crates/rox-core" }
+rox-protocol = { path = "crates/rox-protocol" }
+rox-codec = { path = "crates/rox-codec" }
+rox-buffer = { path = "crates/rox-buffer" }
+rox-transport = { path = "crates/rox-transport" }
+rox-log = { path = "crates/rox-log" }
+rox-api = { path = "crates/rox-api" }
+rox-cli = { path = "crates/rox-cli" }
+rox-agent = { path = "crates/rox-agent", optional = true }
+rox-guard = { path = "crates/rox-guard", optional = true }
+rox-bridge = { path = "crates/rox-bridge", optional = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[workspace]
+members = [
+    "rox",
+    "crates/rox-protocol",
+    "crates/rox-codec",
+    "crates/rox-buffer",
+    "crates/rox-transport",
+    "crates/rox-core",
+    "crates/rox-log",
+    "crates/rox-replay",
+    "crates/rox-bridge",
+    "crates/rox-agent",
+    "crates/rox-guard",
+    "crates/rox-derive",
+    "crates/rox-cli",
+    "crates/rox-api",
+]
+resolver = "2"
+
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+bytes = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+async-trait = "0.1"
+anyhow = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+axum = { version = "0.7", features = ["macros"] }
+tower = { version = "0.4", features = ["util"] }
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+reqwest = { version = "0.12", features = ["json"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+nom = "7"
+bincode = "1"
+petgraph = "0.6"
+blake3 = "1"
+memmap2 = "0.9"
+notify = "7"
+clap = { version = "4", features = ["derive"] }

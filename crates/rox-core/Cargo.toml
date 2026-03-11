@@ -1,0 +1,20 @@
+[package]
+name = "rox-core"
+version = "0.1.0"
+edition = "2021"
+description = "Core runtime engine for Rox"
+
+[dependencies]
+rox-protocol = { path = "../rox-protocol" }
+rox-codec = { path = "../rox-codec" }
+rox-buffer = { path = "../rox-buffer" }
+tokio = { workspace = true }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+notify = { workspace = true }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+petgraph = { workspace = true }
