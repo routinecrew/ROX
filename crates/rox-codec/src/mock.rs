@@ -23,6 +23,7 @@ pub struct MockTopicRegistry {
     topics: RwLock<HashMap<String, MockTopic>>,
 }
 
+#[allow(dead_code)]
 struct MockTopic {
     sender: MessageSender,
     qos: QoSMetadata,

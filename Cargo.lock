@@ -2098,6 +2098,7 @@ dependencies = [
  "async-trait",
  "axum",
  "bytes",
+ "futures-core",
  "rox-protocol",
  "serde",
  "serde_json",
@@ -2112,6 +2113,7 @@ name = "rox-bin"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "clap",
  "rox-agent",
  "rox-api",
  "rox-bridge",
@@ -2122,6 +2124,7 @@ dependencies = [
  "rox-guard",
  "rox-log",
  "rox-protocol",
+ "rox-replay",
  "rox-transport",
  "tokio",
  "tracing",
@@ -2167,6 +2170,7 @@ dependencies = [
  "rox-protocol",
  "serde",
  "serde_yaml",
+ "tempfile",
  "tokio",
  "tracing",
 ]
@@ -2225,6 +2229,7 @@ dependencies = [
  "rox-protocol",
  "serde",
  "serde_json",
+ "tempfile",
  "tokio",
  "tracing",
 ]
@@ -2241,6 +2246,7 @@ dependencies = [
  "rox-codec",
  "rox-protocol",
  "serde",
+ "tempfile",
  "tokio",
  "tracing",
 ]
@@ -2269,6 +2275,7 @@ dependencies = [
  "rox-log",
  "rox-protocol",
  "serde",
+ "tempfile",
  "tokio",
  "tracing",
 ]
@@ -2282,6 +2289,7 @@ dependencies = [
  "bytes",
  "iceoryx2",
  "rox-buffer",
+ "rox-codec",
  "rox-protocol",
  "serde",
  "tokio",

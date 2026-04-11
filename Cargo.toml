@@ -24,6 +24,7 @@ rox-transport = { path = "crates/rox-transport" }
 rox-log = { path = "crates/rox-log" }
 rox-api = { path = "crates/rox-api" }
 rox-cli = { path = "crates/rox-cli" }
+rox-replay = { path = "crates/rox-replay" }
 rox-agent = { path = "crates/rox-agent", optional = true }
 rox-guard = { path = "crates/rox-guard", optional = true }
 rox-bridge = { path = "crates/rox-bridge", optional = true }
@@ -31,6 +32,7 @@ tokio = { workspace = true }
 anyhow = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
+clap = { workspace = true }
 
 [workspace]
 members = [

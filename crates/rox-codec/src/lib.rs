@@ -1,9 +1,13 @@
 //! # rox-codec
 //!
-//! Serialization and deserialization codecs for Rox messages.
-//! Default: bincode. Optional: Apache Arrow (feature flag).
+//! Serialization/deserialization codecs for Rox.
+//! Default: bincode for high-performance binary serialization.
+//! Optional: Apache Arrow for columnar data (feature = "arrow").
 
 pub mod contracts;
 pub mod mock;
 
+mod bincode_codec;
+
+pub use bincode_codec::{BincodeCodec, RoxSerialize};
 pub use contracts::*;

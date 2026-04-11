@@ -6,4 +6,7 @@
 pub mod contracts;
 pub mod mock;
 
+mod commands;
+
+pub use commands::{exec_new, exec_run, Cli, Commands};
 pub use contracts::*;

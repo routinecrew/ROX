@@ -11,6 +11,7 @@ shm = ["dep:iceoryx2"]
 [dependencies]
 rox-protocol = { path = "../rox-protocol" }
 rox-buffer = { path = "../rox-buffer" }
+rox-codec = { path = "../rox-codec" }
 tokio = { workspace = true }
 bytes = { workspace = true }
 serde = { workspace = true }
